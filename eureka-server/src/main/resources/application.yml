@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: eureka-server
+server:
+  port: 8761
+eureka:
+  server:
+    enable-self-preservation: false  # 开发环境关掉保护机制,快速发现已经挂掉的服务，生产环境需要设置为true提升服务稳定性
+  instance:
+    hostname: eureka-server
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+#    register-with-eureka: true
+
+
